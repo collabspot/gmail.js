@@ -2006,7 +2006,7 @@ var Gmail = function(localJQuery) {
 
             return email;
         }
-        catch (error) {
+        catch (error) { 
             console.warn("Gmail.js encountered an error trying to parse sent message!", error);
             return null;
         }
@@ -2051,6 +2051,8 @@ var Gmail = function(localJQuery) {
                         events.send_message = [params.url, params.body, sent_email];
                     } else if (prop.indexOf("^scheduled") > -1) {
                         events.send_scheduled_message = [params.url, params.body, sent_email];
+                    } else if (prop.includes("^r") && prop.includes("^r_bt")) {
+                        events.save_draft = [params.url, params.body, sent_email];
                     }
                 }
             }
